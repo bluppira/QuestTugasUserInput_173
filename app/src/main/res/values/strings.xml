@@ -6,5 +6,9 @@
     <string name="first_name">Nama Depan</string>
     <string name="last_name">Nama Belakang</string>
     <string name="email">Email</string>
+    <string name="order_date">Tgl Pemesanan</string>
+    <string name="food_type">Jenis Makanan</string>
+    <string name="payment_title">Pilih Pembayaran :</string>
+    <string name="proceed">Proceed</string>
 
 </resources>
