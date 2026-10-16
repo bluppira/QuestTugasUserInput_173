@@ -211,3 +211,23 @@ private fun fieldColors() = OutlinedTextFieldDefaults.colors(
     unfocusedTextColor = colorResource(R.color.text_dark),
     cursorColor = colorResource(R.color.primary_blue)
 )
+
+@Composable
+fun FormField(
+    @StringRes label: Int,
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    keyboardType: KeyboardType = KeyboardType.Text
+) {
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        label = { Text(stringResource(label)) },
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+        shape = RoundedCornerShape(dimensionResource(R.dimen.field_corner)),
+        colors = fieldColors(),
+        modifier = modifier
+    )
+}
