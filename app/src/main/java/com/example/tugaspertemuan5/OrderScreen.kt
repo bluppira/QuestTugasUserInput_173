@@ -86,3 +86,10 @@ fun OrderForm(modifier: Modifier = Modifier) {
     var orderDate by rememberSaveable { mutableStateOf("") }
     var foodType by rememberSaveable { mutableStateOf("") }
     var payment by rememberSaveable { mutableStateOf("") }
+
+    val paymentOptions = stringArrayResource(R.array.payment_options)
+    val isComplete = firstName.isNotBlank() && lastName.isNotBlank() &&
+            email.isNotBlank() && orderDate.isNotBlank() &&
+            foodType.isNotBlank() && payment.isNotBlank()
+
+    
