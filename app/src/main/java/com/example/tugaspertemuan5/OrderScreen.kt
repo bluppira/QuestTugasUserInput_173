@@ -179,4 +179,35 @@ fun OrderForm(modifier: Modifier = Modifier) {
             }
         }
 
-        
+        Button(
+            onClick = { },
+            enabled = isComplete,
+            shape = RoundedCornerShape(dimensionResource(R.dimen.button_corner)),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = colorResource(R.color.primary_blue),
+                contentColor = colorResource(R.color.button_text),
+                disabledContainerColor = colorResource(R.color.button_disabled),
+                disabledContentColor = colorResource(R.color.button_disabled_text)
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(dimensionResource(R.dimen.button_height))
+        ) {
+            Text(
+                text = stringResource(R.string.proceed),
+                fontWeight = FontWeight.Bold
+            )
+        }
+    }
+}
+
+@Composable
+private fun fieldColors() = OutlinedTextFieldDefaults.colors(
+    focusedBorderColor = colorResource(R.color.primary_blue),
+    unfocusedBorderColor = colorResource(R.color.field_border),
+    focusedLabelColor = colorResource(R.color.primary_blue),
+    unfocusedLabelColor = colorResource(R.color.text_hint),
+    focusedTextColor = colorResource(R.color.text_dark),
+    unfocusedTextColor = colorResource(R.color.text_dark),
+    cursorColor = colorResource(R.color.primary_blue)
+)
