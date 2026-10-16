@@ -92,4 +92,19 @@ fun OrderForm(modifier: Modifier = Modifier) {
             email.isNotBlank() && orderDate.isNotBlank() &&
             foodType.isNotBlank() && payment.isNotBlank()
 
-    
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(
+                RoundedCornerShape(
+                    topStart = dimensionResource(R.dimen.form_corner),
+                    topEnd = dimensionResource(R.dimen.form_corner)
+                )
+            )
+            .background(colorResource(R.color.form_background))
+            .verticalScroll(rememberScrollState())
+            .padding(dimensionResource(R.dimen.form_padding)),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.section_spacing))
+    ) {
+        
