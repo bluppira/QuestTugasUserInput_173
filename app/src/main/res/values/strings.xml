@@ -11,4 +11,10 @@
     <string name="payment_title">Pilih Pembayaran :</string>
     <string name="proceed">Proceed</string>
 
+    <string name="banner_desc">Gambar Snoopy</string>
+    <string name="calendar_desc">Pilih tanggal</string>
+    <string name="dropdown_desc">Buka pilihan</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Batal</string>
+
 </resources>
