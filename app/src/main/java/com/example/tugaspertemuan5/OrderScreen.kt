@@ -262,7 +262,6 @@ fun DateField(
             colors = fieldColors(),
             modifier = Modifier.fillMaxWidth()
         )
-        // Lapisan transparan agar seluruh field bisa diklik
         Box(
             modifier = Modifier
                 .matchParentSize()
