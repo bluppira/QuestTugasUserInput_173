@@ -78,3 +78,11 @@ fun OrderScreen() {
     }
 }
 
+@Composable
+fun OrderForm(modifier: Modifier = Modifier) {
+    var firstName by rememberSaveable { mutableStateOf("") }
+    var lastName by rememberSaveable { mutableStateOf("") }
+    var email by rememberSaveable { mutableStateOf("") }
+    var orderDate by rememberSaveable { mutableStateOf("") }
+    var foodType by rememberSaveable { mutableStateOf("") }
+    var payment by rememberSaveable { mutableStateOf("") }
