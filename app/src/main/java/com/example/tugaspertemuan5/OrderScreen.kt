@@ -294,3 +294,53 @@ fun DateField(
         }
     }
 }
+
+@Composable
+fun DropdownField(
+    @StringRes label: Int,
+    value: String,
+    options: List<String>,
+    onSelected: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    var expanded by remember { mutableStateOf(false) }
+
+    Box(modifier = modifier) {
+        OutlinedTextField(
+            value = value,
+            onValueChange = { },
+            readOnly = true,
+            label = { Text(stringResource(label)) },
+            trailingIcon = {
+                Icon(
+                    imageVector = Icons.Default.ArrowDropDown,
+                    contentDescription = stringResource(R.string.dropdown_desc),
+                    tint = colorResource(R.color.text_dark)
+                )
+            },
+            singleLine = true,
+            shape = RoundedCornerShape(dimensionResource(R.dimen.field_corner)),
+            colors = fieldColors(),
+            modifier = Modifier.fillMaxWidth()
+        )
+        Box(
+            modifier = Modifier
+                .matchParentSize()
+                .clickable { expanded = true }
+        )
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+            options.forEach { option ->
+                DropdownMenuItem(
+                    text = { Text(option) },
+                    onClick = {
+                        onSelected(option)
+                        expanded = false
+                    }
+                )
+            }
+        }
+    }
+}
