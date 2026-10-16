@@ -25,5 +25,10 @@
         <item>Snack</item>
         <item>Minuman</item>
     </string-array>
+    <string-array name="payment_options">
+        <item>Qris</item>
+        <item>Transfer</item>
+        <item>Tunai</item>
+    </string-array>
 
 </resources>
