@@ -63,4 +63,18 @@ fun OrderScreen() {
     Box(modifier = Modifier.fillMaxSize()) {
         Scaffold(
             containerColor = colorResource(R.color.screen_background)
-        ) {
+        ) { innerPadding ->
+            Image(
+                painter = painterResource(R.drawable.snoopy),
+                contentDescription = stringResource(R.string.banner_desc),
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .fillMaxWidth()
+                    .height(dimensionResource(R.dimen.banner_height))
+            )
+        }
+        OrderForm(modifier = Modifier.align(Alignment.BottomCenter))
+    }
+}
+
