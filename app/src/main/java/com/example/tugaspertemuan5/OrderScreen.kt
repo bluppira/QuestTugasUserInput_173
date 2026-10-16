@@ -231,3 +231,66 @@ fun FormField(
         modifier = modifier
     )
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DateField(
+    @StringRes label: Int,
+    value: String,
+    onDateSelected: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    var showPicker by remember { mutableStateOf(false) }
+    val pattern = stringResource(R.string.date_format)
+    val utc = stringResource(R.string.timezone_utc)
+
+    Box(modifier = modifier) {
+        OutlinedTextField(
+            value = value,
+            onValueChange = { },
+            readOnly = true,
+            label = { Text(stringResource(label)) },
+            trailingIcon = {
+                Icon(
+                    imageVector = Icons.Default.DateRange,
+                    contentDescription = stringResource(R.string.calendar_desc),
+                    tint = colorResource(R.color.text_dark)
+                )
+            },
+            singleLine = true,
+            shape = RoundedCornerShape(dimensionResource(R.dimen.field_corner)),
+            colors = fieldColors(),
+            modifier = Modifier.fillMaxWidth()
+        )
+        // Lapisan transparan agar seluruh field bisa diklik
+        Box(
+            modifier = Modifier
+                .matchParentSize()
+                .clickable { showPicker = true }
+        )
+    }
+
+    if (showPicker) {
+        val pickerState = rememberDatePickerState()
+        DatePickerDialog(
+            onDismissRequest = { showPicker = false },
+            confirmButton = {
+                TextButton(onClick = {
+                    pickerState.selectedDateMillis?.let { millis ->
+                        val formatter = SimpleDateFormat(pattern, Locale.getDefault())
+                        formatter.timeZone = TimeZone.getTimeZone(utc)
+                        onDateSelected(formatter.format(millis))
+                    }
+                    showPicker = false
+                }) { Text(stringResource(R.string.ok)) }
+            },
+            dismissButton = {
+                TextButton(onClick = { showPicker = false }) {
+                    Text(stringResource(R.string.cancel))
+                }
+            }
+        ) {
+            DatePicker(state = pickerState)
+        }
+    }
+}
