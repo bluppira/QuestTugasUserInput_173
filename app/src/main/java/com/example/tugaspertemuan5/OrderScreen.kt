@@ -124,3 +124,59 @@ fun OrderForm(modifier: Modifier = Modifier) {
             FormField(R.string.last_name, lastName, { lastName = it }, Modifier.weight(1f))
         }
 
+        FormField(
+            label = R.string.email,
+            value = email,
+            onValueChange = { email = it },
+            modifier = Modifier.fillMaxWidth(),
+            keyboardType = KeyboardType.Email
+        )
+
+        Row(horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.field_spacing))) {
+            DateField(R.string.order_date, orderDate, { orderDate = it }, Modifier.weight(1f))
+            DropdownField(
+                label = R.string.food_type,
+                value = foodType,
+                options = stringArrayResource(R.array.food_types).toList(),
+                onSelected = { foodType = it },
+                modifier = Modifier.weight(1f)
+            )
+        }
+
+        Text(
+            text = stringResource(R.string.payment_title),
+            fontSize = dimensionResource(R.dimen.label_size).value.sp,
+            fontWeight = FontWeight.Bold,
+            color = colorResource(R.color.text_dark),
+            textAlign = TextAlign.Start,
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            paymentOptions.forEach { option ->
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.clickable { payment = option }
+                ) {
+                    RadioButton(
+                        selected = payment == option,
+                        onClick = { payment = option },
+                        colors = RadioButtonDefaults.colors(
+                            selectedColor = colorResource(R.color.primary_blue),
+                            unselectedColor = colorResource(R.color.field_border)
+                        )
+                    )
+                    Text(
+                        text = option,
+                        fontSize = dimensionResource(R.dimen.option_size).value.sp,
+                        color = colorResource(R.color.text_dark)
+                    )
+                }
+            }
+        }
+
+        
