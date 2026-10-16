@@ -107,4 +107,20 @@ fun OrderForm(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.section_spacing))
     ) {
-        
+        Text(
+            text = stringResource(R.string.form_title),
+            fontSize = dimensionResource(R.dimen.title_size).value.sp,
+            fontWeight = FontWeight.Bold,
+            color = colorResource(R.color.primary_blue)
+        )
+        Text(
+            text = stringResource(R.string.form_subtitle),
+            fontSize = dimensionResource(R.dimen.subtitle_size).value.sp,
+            color = colorResource(R.color.text_hint)
+        )
+
+        Row(horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.field_spacing))) {
+            FormField(R.string.first_name, firstName, { firstName = it }, Modifier.weight(1f))
+            FormField(R.string.last_name, lastName, { lastName = it }, Modifier.weight(1f))
+        }
+
